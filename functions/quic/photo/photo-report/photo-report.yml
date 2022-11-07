@@ -1,0 +1,22 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  photo-report:
+    lang: node10-express
+    handler: ./photo-report
+    image: posoo/photo-report:quic3
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      DBNAME: 'helloRetail'
+      TABLE_PHOTO_ASSIGNMENTS_NAME: 'photoAssignments'
+      TABLE_PHOTOGRAPHER_NAME: 'photographerRegistry'
+      HOST: 'mysql.openfaas-fn.svc.cluster.local'
+      USER: 'abc'
+      PASS: 'xyz'
+    secrets:
+      - dockerhub

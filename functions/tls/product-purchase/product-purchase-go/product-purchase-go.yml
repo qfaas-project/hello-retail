@@ -1,0 +1,19 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://192.168.122.138:31112
+functions:
+  product-purchase-go:
+    lang: golang-qfaas-tls
+    handler: ./product-purchase-go
+    image: posoo/product-purchase-go:tls1
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      URL_PRODUCT_PURCHASE_GET_PRICE: 'http://192.168.122.138:31112/function/product-purchase-get-price'
+      URL_PRODUCT_PURCHASE_AUTHORIZE_CC: 'http://192.168.122.138:31112/function/product-purchase-authorize-cc'
+      URL_PRODUCT_PURCHASE_PUBLISH: 'http://192.168.122.138:31112/function/product-purchase-publish'
+    secrets:
+      - dockerhub

@@ -1,0 +1,19 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  product-purchase:
+    lang: node10-express
+    handler: ./product-purchase
+    image: posoo/product-purchase:tls3
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      URL_PRODUCT_PURCHASE_GET_PRICE: 'http://gateway.openfaas:8080/function/product-purchase-get-price'
+      URL_PRODUCT_PURCHASE_AUTHORIZE_CC: 'http://gateway.openfaas:8080/function/product-purchase-authorize-cc'
+      URL_PRODUCT_PURCHASE_PUBLISH: 'http://gateway.openfaas:8080/function/product-purchase-publish'
+    secrets:
+      - dockerhub

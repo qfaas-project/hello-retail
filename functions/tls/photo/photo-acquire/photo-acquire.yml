@@ -1,0 +1,20 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  photo-acquire:
+    lang: node10-express
+    handler: ./photo-acquire
+    image: posoo/photo-acquire:tls4.1
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      URL_PHOTO_RECEIVE: 'http://gateway.openfaas:8080/function/photo-receive'
+      URL_PHOTO_SUCCESS: 'http://gateway.openfaas:8080/function/photo-success'
+      URL_PHOTO_REPORT: 'http://gateway.openfaas:8080/function/photo-report'
+    secrets:
+      - dockerhub
+

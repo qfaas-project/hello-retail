@@ -1,0 +1,15 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  product-purchase-publish:
+    lang: node10-express
+    handler: ./product-purchase-publish
+    image: posoo/product-purchase-publish:tls3
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    secrets:
+      - dockerhub

@@ -1,0 +1,19 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  photo-request:
+    lang: node10-express
+    handler: ./photo-request
+    image: posoo/photo-request:quic3
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      URL_PHOTO_ASSIGN: 'http://gateway.openfaas:8080/function/photo-assign'
+      URL_PHOTO_MESSAGE: 'http://gateway.openfaas:8080/function/photo-message'
+      URL_PHOTO_RECORD: 'http://gateway.openfaas:8080/function/photo-record'
+    secrets:
+      - dockerhub

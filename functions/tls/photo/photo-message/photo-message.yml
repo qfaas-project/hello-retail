@@ -1,0 +1,21 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  photo-message:
+    lang: node10-express
+    handler: ./photo-message
+    image: posoo/photo-message:tls3
+    read_timeout: 500 # seconds
+    write_timeout: 500 # seconds
+    exec_timeout: 0s # disable
+    write_debug: true
+    environment:
+      SMTP_HOST: 'smtp.ethereal.email'
+      SMTP_PORT: 587
+      SMTP_USER: 'vernie.goldner@ethereal.email'
+      SMTP_PASSWORD: 'kzwAenxUay4tS6XJPv'
+      SMTP_ADDRESS: 'vernie.goldner@ethereal.email'
+    secrets:
+      - dockerhub

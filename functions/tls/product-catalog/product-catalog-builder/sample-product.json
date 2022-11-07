@@ -1,0 +1,15 @@
+{
+  "schema": "com.nordstrom/retail-stream/1-0-0",
+  "origin": "hello-retail/sen",
+  "timeOrigin": "2017-01-12T18:29:25.171Z",
+  "price: ": "123",
+  "data": {
+    "schema": "com.nordstrom/product/create/1-0-0",
+    "id": "4579874",
+    "brand": "POLO RALPH LAUREN",
+    "name": "Polo Ralph Lauren 3-Pack Socks",
+    "description": "PAGE:/s/polo-ralph-lauren-3-pack-socks/4579874",
+    "category": "Socks for Men",
+    "price": "123"
+  }
+}
